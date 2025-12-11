@@ -17,7 +17,7 @@ def mult(a,b):
 def sqr(a):
     return a * a
 
-def sqrt:
+def sqrt(a):
     if a < 0:
         raise ValueError("You cannot find the square root of a negative number")
 
