@@ -20,6 +20,7 @@ def sqr(a):
 def sqrt(a):
     if a < 0:
         raise ValueError("You cannot find the square root of a negative number")
+    return math.sqrt(a)
 
 def log(a, base=math.e):
     if a <= 0:
