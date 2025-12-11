@@ -1,0 +1,44 @@
+name: CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install pytest coverage pytest-cov
+
+      - name: Generate coverage report
+        run: |
+          pytest -q \
+            --cov=. \
+            --cov-report=html
+
+      - name: Prepare GitHub Pages
+        run: |
+          mkdir site
+          mv htmlcov site/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
