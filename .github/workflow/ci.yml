@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [development]
+    branches: [main]
   pull_request:
-    branches: [development]
+    branches: [main]
 
 jobs:
   run-tests:
@@ -31,3 +31,4 @@ jobs:
             --cov-report=term \
             --cov-report=xml \
             --cov-report=html
+
